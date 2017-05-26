@@ -1,0 +1,28 @@
+{
+  "name": "wunderlist-client",
+  "version": "1.0.0",
+  "description": "A client for popular to-do app Wunderlist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ditiashova/wunderlist-client.git"
+  },
+  "keywords": [
+    "wunderlist",
+    "to-do"
+  ],
+  "author": "Inna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ditiashova/wunderlist-client/issues"
+  },
+  "homepage": "https://github.com/ditiashova/wunderlist-client#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-html-dependencies": "^1.1.0",
+    "webpack": "^2.6.1"
+  }
+}
