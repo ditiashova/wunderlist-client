@@ -1,15 +1,38 @@
-import gulp from "gulp";
-import dependencies from "gulp-html-dependencies";
+let gulp = require("gulp");
+let dependencies = require("gulp-html-dependencies");
+let less = require("gulp-less");
+let inject = require("gulp-inject");
+let cleanCSS = require('gulp-clean-css');
+let dest = require('gulp-dest');
+let path_dest = 'vendor/';
 
-let path_dest = 'dist';
-
+gulp.task('minify-css', function() {
+    return gulp.src('assets/css/*.css')
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(gulp.dest('vendor/css'));
+});
 gulp.task('dependencies', function() {
-    return gulp.src('src/index.html')
+    return gulp.src('index.html')
         .pipe(dependencies({
             dest: path_dest,    // The basedir of your application. default: path.dirname(file.path)
-            prefix: '/vendor',  // The URL prefix. Default "/"
+            prefix: 'lib',  // The URL prefix. Default "/"
         }))
         .pipe(gulp.dest(path_dest));
 });
 
-gulp.task('default', ['dependencies']);
+gulp.task('css', function(){
+    return gulp.src('assets/css/*.less')
+        .pipe(less())
+        .pipe(gulp.dest('assets/css/'))
+});
+
+gulp.task('index', function () {
+    let target = gulp.src('./index.html');
+    // It's not necessary to read the files (will speed up things), we're only after their paths:
+    let sources = gulp.src(['./src/**/*.js', './src/*.js'], {read: false});
+
+    return target.pipe(inject(sources))
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('default', ['dependencies', 'index']);
