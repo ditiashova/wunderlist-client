@@ -4,12 +4,12 @@ let less = require("gulp-less");
 let inject = require("gulp-inject");
 let cleanCSS = require('gulp-clean-css');
 let dest = require('gulp-dest');
-let path_dest = 'vendor/';
+let path_dest = 'dist/';
 
 gulp.task('minify-css', function() {
     return gulp.src('assets/css/*.css')
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('vendor/css'));
+        .pipe(gulp.dest('dist/css'));
 });
 gulp.task('dependencies', function() {
     return gulp.src('index.html')
