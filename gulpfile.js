@@ -35,4 +35,4 @@ gulp.task('index', function () {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['dependencies', 'index']);
+gulp.task('default', ['css', 'minify-css', 'dependencies', 'index']);
